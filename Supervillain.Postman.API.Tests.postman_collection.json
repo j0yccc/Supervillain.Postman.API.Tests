@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "04e0bd44-5f24-45c0-a8c8-95b73637cf6f",
+		"_postman_id": "373cba91-464b-4320-a44a-086cd3897c50",
 		"name": "Supervillain.Postman.API.Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -56,7 +56,7 @@
 			"response": []
 		},
 		{
-			"name": "Create new user",
+			"name": "Create new user return 201",
 			"event": [
 				{
 					"listen": "test",
@@ -78,6 +78,16 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -91,7 +101,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"API Test4\",\r\n  \"score\": 0\r\n}"
+					"raw": "{\r\n  \"username\": {{$randomInt}},\r\n  \"score\": 0\r\n}"
 				},
 				"url": {
 					"raw": "https://supervillain.herokuapp.com/v1/user",
@@ -110,10 +120,119 @@
 			"response": []
 		},
 		{
-			"name": "Update user",
+			"name": "Create new user return 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Invalid POST request\", function () {\r",
+							"     pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json; charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": {{$randomInt}},\r\n  \"score\": \"\"\r\n}"
+				},
+				"url": {
+					"raw": "https://supervillain.herokuapp.com/v1/user",
+					"protocol": "https",
+					"host": [
+						"supervillain",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user return 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" pm.test(\"Successful PUT request\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"Test\",\r\n  \"score\": 200\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://supervillain.herokuapp.com/v1/user",
+					"protocol": "https",
+					"host": [
+						"supervillain",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user return 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"Test\",\r\n  \"score\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "https://supervillain.herokuapp.com/v1/user",
 					"protocol": "https",
