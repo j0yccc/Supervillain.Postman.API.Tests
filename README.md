@@ -7,5 +7,6 @@ Requirement:
 Steps:
 
 1. Clone the repo.
-2. Open the collection json in Postman.
+2. Import the json collection to Postman.
 2. Run the test.
+3. Test results pass/fail will be displayed.
