@@ -10,3 +10,6 @@ Steps:
 2. Import the json collection to Postman.
 2. Run the test.
 3. Test results pass/fail will be displayed.
+
+Pipeline:
+https://gitlab.com/joycechin/Supervillain-Postman-API-Tests/-/pipelines
