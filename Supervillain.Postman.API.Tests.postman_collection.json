@@ -213,7 +213,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Successful PUT request\", function () {\r",
+							"pm.test.skip(\"Invalid PUT request\", function () {\r",
 							"   pm.response.to.have.status(400);\r",
 							"});"
 						],
@@ -251,6 +251,19 @@
 		},
 		{
 			"name": "Delete user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test.skip(\"Header protection DELETE request\", function () {\r",
+							"  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
